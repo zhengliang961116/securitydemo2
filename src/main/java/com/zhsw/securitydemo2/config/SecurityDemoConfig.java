@@ -37,8 +37,7 @@ import java.util.List;
 @Configuration
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true, jsr250Enabled = true)
 public class SecurityDemoConfig extends WebSecurityConfigurerAdapter {
-    @Resource
-    private SysUserMapper sysUserMapper;
+
     @Resource
     private UserDetailsService userDetailsService;
     @Override
