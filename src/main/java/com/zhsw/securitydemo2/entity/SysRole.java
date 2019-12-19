@@ -22,12 +22,6 @@ public class SysRole  implements GrantedAuthority {
     public void setAuthority(String authority) {
         this.authority = authority;
     }
-
-    @Override
-    public String toString() {
-        return  id + "," + authority ;
-    }
-
     @Override
     public String getAuthority() {
         return authority;

@@ -1,11 +1,9 @@
 package com.zhsw.securitydemo2.controller;
 
-import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.security.RolesAllowed;
+
 
 /**
  * @Author: zhengliang
@@ -16,7 +14,6 @@ import javax.annotation.security.RolesAllowed;
 public class HelloController {
 
     @GetMapping("/hello")
-    @RolesAllowed("ONE")
     public String hello(){
         return "hello";
     }

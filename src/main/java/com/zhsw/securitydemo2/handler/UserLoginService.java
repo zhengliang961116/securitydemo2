@@ -23,7 +23,6 @@ public class UserLoginService  implements UserDetailsService {
         if (username==null||username.trim().length()<=0) {
             throw new UsernameNotFoundException("用户名为空");
         }
-
         SysUser sysUser = sysUserMapper.selectByUserName(username);
         if (sysUser != null){
             return sysUser;

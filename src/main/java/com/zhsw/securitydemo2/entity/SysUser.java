@@ -1,11 +1,8 @@
 package com.zhsw.securitydemo2.entity;
 
-
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -68,6 +65,10 @@ public class SysUser implements UserDetails {
         this.authorities = authorities;
     }
 
+    /**
+     * 获取当前用户的角色列表
+     * @return
+     */
     @Override
     public List<SysRole> getAuthorities() {
         return authorities;

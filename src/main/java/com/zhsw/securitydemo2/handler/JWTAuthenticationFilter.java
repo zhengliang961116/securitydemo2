@@ -38,7 +38,8 @@ public class JWTAuthenticationFilter extends GenericFilterBean {
             if (tokenBody != null && tokenBody.trim().length()>0){
                 JSONObject user = JSON.parseObject(tokenBody).getJSONObject("user");
                 SysUser sysUser = JSON.toJavaObject(user,SysUser.class);
-                SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(sysUser,null,sysUser.getAuthorities()));
+                SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(sysUser,
+                        null,sysUser.getAuthorities()));
             }else{
                 HttpServletResponse res = (HttpServletResponse) response;
                 res.setContentType("application/json;charset=UTF-8");
