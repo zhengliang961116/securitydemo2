@@ -1,0 +1,11 @@
+server:
+  port: 8081
+spring:
+    datasource:
+          url: jdbc:mysql://localhost:3306/sys_user?characterEncoding=UTF-8
+          username: root
+          password: root
+          driver-class-name: com.mysql.jdbc.Driver
+mybatis:
+  type-aliases-package: com.zhsw.sercuritydemo2.entity
+  mapper-locations: classpath:mapper/*.xml
