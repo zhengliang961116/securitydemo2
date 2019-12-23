@@ -1,6 +1,7 @@
 package com.zhsw.securitydemo2.config;
 
 import com.zhsw.securitydemo2.handler.*;
+import com.zhsw.securitydemo2.service.SysUserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.AccessDecisionManager;
@@ -14,7 +15,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.access.expression.WebExpressionVoter;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
@@ -36,11 +36,12 @@ import java.util.List;
 public class SecurityDemoConfig extends WebSecurityConfigurerAdapter {
 
     @Resource
-    private UserDetailsService userDetailsService;
+    private SysUserService sysUserService;
+    //配置springSecurity
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         /* 登录配置 */
-        http.formLogin().loginProcessingUrl("/login");
+        http.formLogin().loginProcessingUrl("/login").permitAll();
 
         //开启跨域共享，跨域伪造请求无效
         http.cors().and().csrf().disable();
@@ -76,9 +77,10 @@ public class SecurityDemoConfig extends WebSecurityConfigurerAdapter {
         /* 配置token验证过滤器 */
         http.addFilterBefore(new JWTAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
+    //认证用户来源
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+        auth.userDetailsService(sysUserService).passwordEncoder(new BCryptPasswordEncoder());
     }
 
     /**
